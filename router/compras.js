@@ -1,8 +1,8 @@
 import express from "express"
-import { getCompras, postCompras, putCompras } from '../controller/compras.js'
+import { getCervejas, postCompras, putCompras } from '../controller/compras.js'
 const router = express.Router()
 
-router.get('/', getCompras)
+router.get('/cervejas', getCervejas)
 router.post('/', postCompras)
 router.put('/:id', putCompras)
 

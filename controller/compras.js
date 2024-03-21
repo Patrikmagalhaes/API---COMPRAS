@@ -1,10 +1,10 @@
-import { Compra } from "../models.js/Compras.js"
+import { Cerveja } from "../models.js/Compras.js"
 
 
-const getCompras = async (req, res) => {
+const getCervejas = async (req, res) => {
     try {
-        const compras = await Compra.findAll()
-        res.status(200).send({ compras })
+        const cerveja = await Cerveja.findAll({attributes: ['nome']})
+        res.status(200).send({ cerveja })
     } catch (erro) {
         console.log(erro)
         res.status(404).send({ message: "Deu merda" })
@@ -12,14 +12,14 @@ const getCompras = async (req, res) => {
 }
 
 const postCompras = async (req, res) => {
-    const { produto, preco } = req.body
+    const { nome, abv, tipo, nacionalidade } = req.body
     try {
-        if (!produto || !preco) return res.status(404).send({
+        if (!nome || !abv ||!tipo ||!nacionalidade ) return res.status(404).send({
             message:
                 'informações incompletas'
         })
 
-        const produtoCriado = await Compra.create({ produto, preco })
+        const produtoCriado = await Cerveja.create({ nome, abv, tipo, nacionalidade })
         res.status(201).send({ produtoCriado })
     } catch (erro) {
         console.log(erro)
@@ -42,4 +42,4 @@ const putCompras = async (res, req) => {
 
 }
 
-export { getCompras, postCompras, putCompras }
+export { getCervejas, postCompras, putCompras }

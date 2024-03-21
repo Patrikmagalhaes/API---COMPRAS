@@ -1,19 +1,25 @@
 import sequelize from "../database.js";
 import { DataTypes } from "sequelize";
 
-const Compra = sequelize.define('Compra', {
+const Cerveja = sequelize.define('cerveja', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        
+
     },
-    produto: {
+    nome: {
         type: DataTypes.STRING
     },
-    preco: {
+    abv: {
         type: DataTypes.FLOAT
     },
-})
+    tipo: {
+        type: DataTypes.STRING
+    },
+    nacionalidade: {
+        type: DataTypes.STRING
+    },
+}, { timestamps: false })
 
-export {Compra}
+export { Cerveja }
